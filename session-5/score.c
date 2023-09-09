@@ -3,15 +3,16 @@
 #include <string.h>
 
 // Function Declaration
-int getFinalScore(int tugas, int uts, int uas);
-char *getGrade(int finalScore);
+float getFinalScore(int tugas, int uts, int uas);
+char *getGrade(float finalScore);
 int checkIsNumberOnly(char nim[100]);
 int checkIsLettersAndSpacesOnly(char nama[255]);
 int checkIsValidScore(int score);
 
 int main() {
   // Deklarasi variabel
-  int tugas = -1, uts = -1, uas = -1, nilaiAkhir;
+  int tugas = -1, uts = -1, uas = -1;
+  float nilaiAkhir;
   char nim[100] = "a", nama[255] = "1", grade[4] = "";
 
   printf("==================================================\n");
@@ -63,7 +64,7 @@ int main() {
   printf("%-30s: ", "Nomor Induk Mahasiswa");
   printf("%s\n", nim);
   printf("%-30s: ", "Nilai Akhir");
-  printf("%d\n", nilaiAkhir);
+  printf("%.2f\n", nilaiAkhir);
   printf("%-30s: ", "Grade");
   printf("%s\n", grade);
   return 0;
@@ -143,18 +144,18 @@ int checkIsLettersAndSpacesOnly(char nama[255]) {
  * {int} tugas - nilai tugas
  * {int} uts - nilai UTS
  * {int} uas - nilai UAS
- * returns {int}
+ * returns {float}
  * */
-int getFinalScore(int tugas, int uts, int uas) {
-  int finalScore;
+float getFinalScore(int tugas, int uts, int uas) {
+  float finalScore;
 
   // Hitung berdasarkan bobot nilai tugas yaitu 40%
-  int nilaiTugas = tugas * 40 / 100;
+  float nilaiTugas = (float)tugas * 40 / 100;
 
   // Hitung berdasarkan bobot nilai uts yaitu 30%
-  int nilaiUTS = uts * 30 / 100;
+  float nilaiUTS = (float)uts * 30 / 100;
   // Hitung berdasarkan bobot nilai uas yaitu 30%
-  int nilaiUAS = uas * 30 / 100;
+  float nilaiUAS = (float)uas * 30 / 100;
 
   finalScore = nilaiTugas + nilaiUTS + nilaiUAS;
   return finalScore;
@@ -163,10 +164,10 @@ int getFinalScore(int tugas, int uts, int uas) {
 /**
  * Function untuk mendapatkan grade berdasarkan nilai akhir
  *
- * {int} finalScore - Nilai akhir
+ * {float} finalScore - Nilai akhir
  * returns {string}
  * */
-char *getGrade(int finalScore) {
+char *getGrade(float finalScore) {
   if (finalScore >= 90 && finalScore <= 100) {
     return "A";
   } else if (finalScore >= 85 && finalScore < 90) {
